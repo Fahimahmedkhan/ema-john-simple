@@ -7,6 +7,7 @@ import './Shop.css';
 const Shop = () => {
     /* The above code is using the useEffect hook to fetch data from a JSON file. */
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         fetch('products.json')
@@ -14,18 +15,26 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, []);
 
+    const handelAddToCart = (product) => {
+        console.log(product);
+        const newCart = [...cart, product];
+        setCart(newCart);
+    }
+
     return (
         <div className='shop-container'>
             <div className="products-container">
                 {
-                    products.map(product => <Product 
+                    products.map(product => <Product
                         key={product.id}
                         product={product}
-                        ></Product>)
+                        handelAddToCart={handelAddToCart}
+                    ></Product>)
                 }
             </div>
             <div className="cart-container">
                 <h4>Order Summary</h4>
+                <p>Selected Items: {cart.length}</p>
             </div>
         </div>
     );
