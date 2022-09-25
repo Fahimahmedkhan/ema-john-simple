@@ -22,7 +22,7 @@ const Cart = (props) => {
             <p>Total Price: ${total}</p>
             <p>Total Shipping: ${shipping}</p>
             <p>Tax: ${tax}</p>
-            <h5>Grand Total: ${parseFloat(grandTotal.toFixed(2))}</h5>
+            <h5>Grand Total: ${grandTotal.toFixed(2)}</h5>
         </div>
     );
 };
