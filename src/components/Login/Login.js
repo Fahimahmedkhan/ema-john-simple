@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 import './Login.css';
 
 const Login = () => {
 
     const { signIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handelSubmit = (event) => {
         event.preventDefault();
@@ -16,6 +18,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                navigate('/');
             })
             .catch(error => console.error(error))
     }
@@ -34,7 +38,7 @@ const Login = () => {
                 </div>
                 <input className='btn-submit' type="submit" value="Login" />
             </form>
-            <p>New to Ema john?<samp><Link to="/signup"> Create a New Account</Link></samp></p>
+            <p>New to Ema john?<span><Link to="/signup"> Create a New Account</Link></span></p>
         </div>
     );
 };
